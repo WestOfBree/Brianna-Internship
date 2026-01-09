@@ -10,18 +10,53 @@ import "owl.carousel/dist/assets/owl.theme.default.css";
 
 const HotCollections = () => {
   const [hotCollections, setHotCollections] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     axios.get('https://us-central1-nft-cloud-functions.cloudfunctions.net/hotCollections')
       .then(response => {
         setHotCollections(response.data);
+        setIsLoading(false);
       })
       .catch(error => {
         console.error('Error fetching data:', error);
+        setIsLoading(false);
       });
   }, []);
 
-  
+  if (hotCollections.length === 0 || isLoading) {
+    return <div>
+      <section id="section-collections" className="no-bottom">
+        <div className="container">
+          <div className="row"> 
+            <div className="col-lg-12">
+              <div className="text-center">
+                <h2>Hot Collections</h2>
+                <div className="small-border bg-color-2"></div>
+              </div>
+            </div>
+            <OwlCarousel className="owl-theme owl-loaded owl-drag" items={4} loop={true} margin={10} dots={false} loadingClass="owl-loading" responsive={{0:{items:1},600:{items:2},1000:{items:4}}} nav>
+              {[1, 2, 3, 4, 5, 6, 7, 8].map((placeholder) => (
+                <div className="nft_coll" key={placeholder}>
+                  <div className="nft_wrap">
+                    <div className="skeleton-box" style={{ width: '100%', height: '200px', borderRadius: '10px' }}></div>
+                  </div>
+                  <div className="nft_coll_pp">
+                    <div className="skeleton-box" style={{ width: '50px', height: '50px', borderRadius: '50%' }}></div>
+                  </div>
+                  <div className="nft_coll_info">
+                    <div className="skeleton-box" style={{ width: '80%', height: '20px', borderRadius: '5px', marginBottom: '10px' }}></div>
+                    <div className="skeleton-box" style={{ width: '60%', height: '15px', borderRadius: '5px' }}></div>
+                  </div>               
+                </div>
+              ))}
+            </OwlCarousel>
+          </div>
+        </div>
+      </section>
+    </div>;
+  } 
+  else {
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
@@ -32,15 +67,11 @@ const HotCollections = () => {
               <div className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className="owl-theme owl-loaded owl-drag" items={4} loop={true} margin={10} nav>
+        
+          <OwlCarousel className="owl-theme owl-loaded owl-drag" items={4} loop={true} margin={10} dots={false} loadingClass="owl-loading" responsive={{0:{items:1},600:{items:2},1000:{items:4}}} nav>
           {hotCollections.map((hotCollection, index) => (
-          
-            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
-               
               <div className="nft_coll">
-                  
                 <div className="nft_wrap">
-                 
                   <Link to="/item-details">
                     <img src={hotCollection.nftImage} className="lazy img-fluid" alt="" />
                   </Link>
@@ -56,18 +87,16 @@ const HotCollections = () => {
                     <h4>{hotCollection.title}</h4>
                   </Link>
                   <span>{hotCollection.code}</span>
-                </div>
-                
+                </div>               
               </div>
-           
-            </div>
-            
           ))}
            </OwlCarousel>  
         </div>
       </div>
     </section>
   );
+
+};
 };
 
 export default HotCollections;
