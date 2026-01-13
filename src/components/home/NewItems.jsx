@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import CountDown from "../home/CountDown";
 
 
 const NewItems = ({newItems, isLoading}) => {
@@ -99,8 +100,7 @@ const NewItems = ({newItems, isLoading}) => {
                     <i className="fa fa-check"></i>
                   </Link>
                 </div>
-                <div className="de_countdown">5h 30m 32s</div>
-
+                  <CountDown expiryDate={newItems.expiryDate} />
                 <div className="nft__item_wrap">
                   <div className="nft__item_extra">
                     <div className="nft__item_buttons">
