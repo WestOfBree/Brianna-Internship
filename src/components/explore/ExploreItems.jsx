@@ -22,6 +22,12 @@ const ExploreItems = () => {
         console.error("Error fetching data:", error);
       });
   }, []);
+  async function filterItems(filter) {
+    setLoading(true);
+    const response = await axios.get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/explore?filter=${filter}`);
+    setExploreItems(response.data);
+    setLoading(false);
+  }
  if (exploreItems.length === 0 || loading) {
      return (
     <>
@@ -101,7 +107,9 @@ const ExploreItems = () => {
   return (
     <>
       <div>
-        <select id="filter-items" defaultValue="">
+        <select id="filter-items" 
+        defaultValue=""
+        onChange={(event) => filterItems(event.target.value)}>
           <option value="">Default</option>
           <option value="price_low_to_high">Price, Low to High</option>
           <option value="price_high_to_low">Price, High to Low</option>
