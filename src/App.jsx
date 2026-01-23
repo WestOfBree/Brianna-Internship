@@ -32,7 +32,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home newItems={newItems} isLoading={isLoading} />} />
         <Route path="/explore" element={<Explore />} />
-        <Route path="/author/:authorId" element={<Author />} />
+        <Route path="/author/:authorId" element={<Author authorId={newItems.authorId} />} />
         <Route path="/item-details/:nftId" element={<ItemDetails newItems={newItems} isLoading={isLoading} />} />
       </Routes>
       <Footer />
