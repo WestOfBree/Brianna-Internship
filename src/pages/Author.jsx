@@ -1,15 +1,17 @@
 import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import AuthorImage from "../images/author_thumbnail.jpg";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Skeleton from "../components/UI/Skeleton";
+import { use } from "react";
 
 const Author = () => {
   const [authorData, setAuthorData] = useState(null);
   const [loading , setLoading] = useState(true);
+  const authorId = useParams().authorId;
   useEffect(() => {
     axios
     .get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/authors?author=${authorId}`)
