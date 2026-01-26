@@ -8,27 +8,11 @@ import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
 import CountDown from "../home/CountDown";
-
+import AOS from 'aos';
+import 'aos/dist/aos.css'; 
 
 const NewItems = ({newItems, isLoading}) => {
-  // const [newItems, setNewItems] = useState([]);
-  // const [isLoading, setIsLoading] = useState(true);
-  // useEffect(() => {
-  //   axios
-  //     .get(
-  //       "https://us-central1-nft-cloud-functions.cloudfunctions.net/newItems"
-  //     )
-  //     .then((response) => {
-
-  //       setNewItems(response.data);
-  //       setIsLoading(false);
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error fetching data:", error);
-  //       setIsLoading(false);
-  //     });
-  // }, []);
-
+AOS.init();
   if (newItems.length === 0 || isLoading) {
     return <div>
       <section id="section-items" className="no-bottom">
@@ -36,7 +20,7 @@ const NewItems = ({newItems, isLoading}) => {
           <div className="row">
             <div className="col-lg-12"> 
               <div className="text-center">
-                <h2>New Items</h2>
+                <h2 data-aos="fade-up" data-aos-duration="1000">New Items</h2>
                 <div className="small-border bg-color-2"></div>
               </div>
             </div>
@@ -82,11 +66,11 @@ const NewItems = ({newItems, isLoading}) => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>New Items</h2>
-              <div className="small-border bg-color-2"></div>
+              <h2 data-aos="fade-up" data-aos-duration="1000">New Items</h2>
+              <div data-aos="fade-down" data-aos-duration="1000" className="small-border bg-color-2"></div>
             </div>
           </div>
-          <OwlCarousel className="owl-theme owl-loaded owl-drag" items={4} loop={true} margin={10} dots={false} loadingClass="owl-loading" responsive={{0:{items:1},600:{items:2},1000:{items:4}}} nav>
+          <OwlCarousel data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" className="owl-theme owl-loaded owl-drag" items={4} loop={true} margin={10} dots={false} loadingClass="owl-loading" responsive={{0:{items:1},600:{items:2},1000:{items:4}}} nav>
           {newItems.map((newItems, index) => (
               <div className="nft__item">
                 <div className="author_list_pp">

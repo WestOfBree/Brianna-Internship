@@ -3,8 +3,12 @@ import { Link } from "react-router-dom";
 import AuthorImage from "../../images/author_thumbnail.jpg";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Skeleton from "../UI/Skeleton";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const TopSellers = () => {
+  AOS.init();
   const [topSellers, setTopSellers] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   useEffect(() => {
@@ -26,8 +30,8 @@ const TopSellers = () => {
         <div className="row">
           <div className="col-lg-12"> 
             <div className="text-center">
-              <h2>Top Sellers</h2>
-              <div className="small-border bg-color-2"></div>
+              <h2 data-aos="fade-up" data-aos-duration="1000">Top Sellers</h2>
+              <div data-aos="fade-down" data-aos-duration="1000" className="small-border bg-color-2"></div>
             </div>
           </div>
           <div className="col-md-12">
@@ -35,11 +39,11 @@ const TopSellers = () => {
               {new Array(5).fill(0).map((topSellers, index) => (
                 <li key={index}>  
                   <div className="author_list_pp">
-                    <div className="skeleton-box" style={{ width: '50px', height: '50px', borderRadius: '50%' }}></div>
+                    <Skeleton width={50} height={50} borderRadius="50%" />
                   </div>  
                   <div className="author_list_info">
-                    <div className="skeleton-box" style={{ width: '100px', height: '20px', borderRadius: '5px', marginBottom: '10px' }}></div>
-                    <div className="skeleton-box" style={{ width: '60px', height: '15px', borderRadius: '5px' }}></div>     
+                    <Skeleton width={100} height={20} borderRadius="5px" marginBottom="10px" />
+                    <Skeleton width={60} height={15} borderRadius="5px" />     
                   </div>
                 </li>
               ))}
@@ -57,12 +61,12 @@ const TopSellers = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Top Sellers</h2>
-              <div className="small-border bg-color-2"></div>
+              <h2 data-aos="fade-up" data-aos-duration="1000">Top Sellers</h2>
+              <div data-aos="fade-down" data-aos-duration="1000" className="small-border bg-color-2"></div>
             </div>
           </div>
           <div className="col-md-12">
-            <ol className="author_list">
+            <ol data-aos="fade-up" data-aos-duration="1000" className="author_list">
               {topSellers.map((topSellers, index) => (
                 <li key={index}>
                   <div className="author_list_pp">

@@ -7,8 +7,11 @@ import { useState } from "react";
 import OwlCarousel from "react-owl-carousel";
 import "owl.carousel/dist/assets/owl.carousel.css";
 import "owl.carousel/dist/assets/owl.theme.default.css";
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const HotCollections = () => {
+  AOS.init();
   const [hotCollections, setHotCollections] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   
@@ -31,11 +34,11 @@ const HotCollections = () => {
           <div className="row"> 
             <div className="col-lg-12">
               <div className="text-center">
-                <h2>Hot Collections</h2>
-                <div className="small-border bg-color-2"></div>
+                <h2 data-aos="fade-up" data-aos-duration="1000">Hot Collections</h2>
+                <div data-aos="fade-down" data-aos-duration="1000" className="small-border bg-color-2"></div>
               </div>
             </div>
-            <OwlCarousel className="owl-theme owl-loaded owl-drag" items={4} loop={true} margin={10} dots={false} loadingClass="owl-loading" responsive={{0:{items:1},600:{items:2},1000:{items:4}}} nav>
+            <OwlCarousel data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" className="owl-theme owl-loaded owl-drag" items={4} loop={true} margin={10} dots={false} loadingClass="owl-loading" responsive={{0:{items:1},600:{items:2},1000:{items:4}}} nav>
               {[1, 2, 3, 4, 5, 6, 7, 8].map((placeholder) => (
                 <div className="nft_coll" key={placeholder}>
                   <div className="nft_wrap">
@@ -63,12 +66,12 @@ const HotCollections = () => {
         <div className="row">
           <div className="col-lg-12">
             <div className="text-center">
-              <h2>Hot Collections</h2>
-              <div className="small-border bg-color-2"></div>
+              <h2 data-aos="fade-up" data-aos-duration="1000">Hot Collections</h2>
+              <div data-aos="fade-down" data-aos-duration="1000" className="small-border bg-color-2"></div>
             </div>
           </div>
         
-          <OwlCarousel className="owl-theme owl-loaded owl-drag" items={4} loop={true} margin={10} dots={false} loadingClass="owl-loading" responsive={{0:{items:1},600:{items:2},1000:{items:4}}} nav>
+          <OwlCarousel data-aos="fade-up" data-aos-duration="1000" data-aos-delay="200" className="owl-theme owl-loaded owl-drag" items={4} loop={true} margin={10} dots={false} loadingClass="owl-loading" responsive={{0:{items:1},600:{items:2},1000:{items:4}}} nav>
           {hotCollections.map((hotCollection, index) => (
               <div className="nft_coll">
                 <div className="nft_wrap">
