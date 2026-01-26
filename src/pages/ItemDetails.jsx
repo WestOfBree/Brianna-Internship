@@ -9,7 +9,7 @@ import Skeleton from "../components/UI/Skeleton";
 const ItemDetails = () => {
   const [ItemDetails, setItemDetails] = useState(null);
   const [isloading, setIsLoading] = useState(true);
-  const { nftId } = useParams().nftId;
+  const nftId = useParams().nftId;
   useEffect(() => {
     axios
     .get(`https://us-central1-nft-cloud-functions.cloudfunctions.net/itemDetails?nftId=${nftId}`)
@@ -23,7 +23,7 @@ const ItemDetails = () => {
         setIsLoading(false);
       });
     window.scrollTo(0, 0);
-  }, []);
+  }, [nftId]);
 
   if (!ItemDetails || isloading) {
   return (
@@ -132,13 +132,13 @@ const ItemDetails = () => {
                       <h6>Owner</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
-                            <img className="lazy" src={ItemDetails.authorImage} alt="" />
+                          <Link to={`/author/${ItemDetails.ownerId}`}>
+                            <img className="lazy" src={ItemDetails.ownerImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to={`/author/${ItemDetails.ownerId}`}>{ItemDetails.ownerName}</Link>
                         </div>
                       </div>
                     </div>
@@ -149,13 +149,13 @@ const ItemDetails = () => {
                       <h6>Creator</h6>
                       <div className="item_author">
                         <div className="author_list_pp">
-                          <Link to="/author">
-                            <img className="lazy" src={AuthorImage} alt="" />
+                          <Link to={`/author/${ItemDetails.creatorId}`}>
+                            <img className="lazy" src={ItemDetails.creatorImage} alt="" />
                             <i className="fa fa-check"></i>
                           </Link>
                         </div>
                         <div className="author_list_info">
-                          <Link to="/author">Monica Lucas</Link>
+                          <Link to={`/author/${ItemDetails.creatorId}`}>{ItemDetails.creatorName}</Link>
                         </div>
                       </div>
                     </div>
@@ -163,7 +163,7 @@ const ItemDetails = () => {
                     <h6>Price</h6>
                     <div className="nft-item-price">
                       <img src={EthImage} alt="" />
-                      <span>1.85</span>
+                      <span>{ItemDetails.price}</span>
                     </div>
                   </div>
                 </div>
