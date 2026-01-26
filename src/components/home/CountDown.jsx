@@ -28,7 +28,7 @@ const CountDown = ({expiryDate}) => {
         const id = setInterval(updateCountdown, 1000);
         setIntervalId(id);
         return () => clearInterval(id);
-    }, [expiryDate]);
+    }, [expiryDate, intervalId]);
 
     return (
         <div className="de_countdown">

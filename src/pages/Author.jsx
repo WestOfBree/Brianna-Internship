@@ -1,12 +1,10 @@
 import React from "react";
 import AuthorBanner from "../images/author_banner.jpg";
 import AuthorItems from "../components/author/AuthorItems";
-import { Link, useParams } from "react-router-dom";
-import AuthorImage from "../images/author_thumbnail.jpg";
+import { useParams } from "react-router-dom";
 import axios from "axios";
 import { useState, useEffect } from "react";
 import Skeleton from "../components/UI/Skeleton";
-import { use } from "react";
 
 const Author = () => {
   const [authorData, setAuthorData] = useState(null);
@@ -23,7 +21,7 @@ const Author = () => {
         console.error("Error fetching author data:", error);
         setLoading(false);
       });
-  }, []);
+  }, [authorId]);
 
   if (loading) {
     return (
