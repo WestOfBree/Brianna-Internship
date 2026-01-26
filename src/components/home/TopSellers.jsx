@@ -12,7 +12,7 @@ const TopSellers = () => {
     .then((response) => {
       setTopSellers(response.data);
       setIsLoading(false);
-      console.log(response.data);
+
     })
     .catch((error) => {
       console.error("Error fetching data:", error);
@@ -66,7 +66,7 @@ const TopSellers = () => {
               {topSellers.map((topSellers, index) => (
                 <li key={index}>
                   <div className="author_list_pp">
-                    <Link to={`/author/${topSellers.id}`}>
+                    <Link to={`/author/${topSellers.authorId}`}>
                       <img
                         className="lazy pp-author"
                         src={topSellers.authorImage}
@@ -76,7 +76,7 @@ const TopSellers = () => {
                     </Link>
                   </div>
                   <div className="author_list_info">
-                    <Link to={`/author/${topSellers.id}`}>{topSellers.authorName}</Link>
+                    <Link to={`/author/${topSellers.authorId}`}>{topSellers.authorName}</Link>
                     <span>{topSellers.price} ETH</span>
                   </div>
                 </li>
